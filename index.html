@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Felices 3 años y 2 meses, mi amor 🤍</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-cream: #fcf7f4;
+      --bg-soft: #f7ece6;
+      --card-bg: #ffffff;
+      --rose-deep: #9e3d4c;
+      --rose-main: #c85a6a;
+      --rose-light: #f3d5d8;
+      --rose-blush: #fae8ea;
+      --gold-warm: #c9965b;
+      --text-dark: #332427;
+      --text-muted: #6e585c;
+      --shadow-soft: 0 14px 35px rgba(82, 41, 48, 0.08);
+      --shadow-polaroid: 0 18px 40px rgba(66, 33, 38, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(243, 213, 216, 0.45) 0%, transparent 45%),
+        radial-gradient(circle at 85% 40%, rgba(245, 224, 206, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 50% 85%, rgba(243, 213, 216, 0.4) 0%, transparent 50%);
+      color: var(--text-dark);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Pantalla de bienvenida (Sobre) */
+    .envelope-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: linear-gradient(145deg, #fdf8f5 0%, #f7e4e6 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .envelope-overlay.opened {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .envelope-card {
+      background: #ffffff;
+      max-width: 410px;
+      width: 100%;
+      padding: 42px 32px 36px;
+      border-radius: 24px;
+      box-shadow: 0 24px 50px rgba(130, 55, 68, 0.14);
+      text-align: center;
+      position: relative;
+      border: 1px solid rgba(200, 90, 106, 0.18);
+      cursor: pointer;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .envelope-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 28px 56px rgba(130, 55, 68, 0.2);
+    }
+
+    .wax-seal {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #d96b7b, #9e3d4c 75%);
+      margin: 0 auto 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 28px;
+      box-shadow: 0 8px 20px rgba(158, 61, 76, 0.35), inset 0 2px 5px rgba(255, 255, 255, 0.35);
+      border: 2px dashed rgba(255, 255, 255, 0.45);
+      animation: pulseSeal 2.2s infinite ease-in-out;
+    }
+
+    @keyframes pulseSeal {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+
+    .envelope-tag {
+      font-family: 'Caveat', cursive;
+      font-size: 1.55rem;
+      color: var(--rose-main);
+      margin-bottom: 6px;
+    }
+
+    .envelope-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .envelope-sub {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+      margin-bottom: 26px;
+    }
+
+    .open-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--rose-deep);
+      color: #fff;
+      border: none;
+      padding: 13px 28px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(158, 61, 76, 0.28);
+      transition: background 0.25s ease, transform 0.2s ease;
+    }
+
+    .open-btn:hover {
+      background: #842f3c;
+      transform: scale(1.03);
+    }
+
+    /* Partículas flotantes de fondo */
+    .floating-hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .heart-particle {
+      position: absolute;
+      bottom: -30px;
+      color: rgba(200, 90, 106, 0.22);
+      user-select: none;
+      animation: floatUp linear forwards;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg) scale(0.8);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.7;
+      }
+      85% {
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(-108vh) rotate(25deg) scale(1.1);
+        opacity: 0;
+      }
+    }
+
+    /* Contenedor principal */
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 36px 20px 90px;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 46px 16px 36px;
+    }
+
+    .badge-date {
+      display: inline-block;
+      background: var(--rose-blush);
+      color: var(--rose-deep);
+      border: 1px solid rgba(200, 90, 106, 0.25);
+      padding: 6px 18px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 6vw, 4.1rem);
+      font-weight: 700;
+      line-height: 1.12;
+      color: var(--text-dark);
+      margin-bottom: 14px;
+    }
+
+    .hero h1 span {
+      color: var(--rose-main);
+      font-style: italic;
+    }
+
+    .hero-subtitle {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* Contador de nuestro tiempo */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+      gap: 16px;
+      margin: 28px auto 52px;
+      max-width: 780px;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(200, 90, 106, 0.16);
+      border-radius: 18px;
+      padding: 20px 14px;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.25s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.35rem;
+      font-weight: 700;
+      color: var(--rose-deep);
+      line-height: 1.1;
+    }
+
+    .stat-label {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    /* Carta principal */
+    .letter-section {
+      max-width: 720px;
+      margin: 0 auto 68px;
+      background: #fffdfb;
+      border-radius: 22px;
+      padding: clamp(28px, 5vw, 52px);
+      box-shadow: var(--shadow-polaroid);
+      border: 1px solid rgba(201, 150, 91, 0.22);
+      position: relative;
+    }
+
+    .letter-section::before {
+      content: "";
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-1.5deg);
+      width: 130px;
+      height: 28px;
+      background: rgba(243, 213, 216, 0.72);
+      border-left: 2px dotted rgba(158, 61, 76, 0.25);
+      border-right: 2px dotted rgba(158, 61, 76, 0.25);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .letter-greeting {
+      font-family: 'Caveat', cursive;
+      font-size: 2.1rem;
+      color: var(--rose-deep);
+      margin-bottom: 16px;
+    }
+
+    .letter-body p {
+      font-size: 1.04rem;
+      color: #3d2c2f;
+      margin-bottom: 18px;
+    }
+
+    .letter-highlight {
+      background: linear-gradient(180deg, transparent 58%, rgba(243, 213, 216, 0.75) 58%);
+      padding: 0 3px;
+      font-weight: 500;
+    }
+
+    .letter-signature {
+      margin-top: 26px;
+      text-align: right;
+      font-family: 'Caveat', cursive;
+      font-size: 1.95rem;
+      color: var(--rose-deep);
+    }
+
+    /* Títulos de sección */
+    .section-header {
+      text-align: center;
+      margin-bottom: 38px;
+    }
+
+    .section-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4.5vw, 2.75rem);
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .section-header p {
+      font-family: 'Caveat', cursive;
+      font-size: 1.55rem;
+      color: var(--rose-main);
+    }
+
+    /* Galería estilo Scrapbook / Polaroid */
+    .memories-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 28px;
+      align-items: start;
+      margin-bottom: 68px;
+    }
+
+    .polaroid-card {
+      background: #ffffff;
+      padding: 16px 16px 24px;
+      border-radius: 16px;
+      box-shadow: var(--shadow-polaroid);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      position: relative;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .polaroid-card:hover {
+      z-index: 2;
+      box-shadow: 0 24px 48px rgba(66, 33, 38, 0.16);
+    }
+
+    /* Cinta adhesiva decorativa */
+    .tape {
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%) rotate(2deg);
+      width: 105px;
+      height: 25px;
+      background: rgba(245, 226, 200, 0.78);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .memory-1 {
+      grid-column: span 5;
+      transform: rotate(-1.4deg);
+    }
+    .memory-1:hover {
+      transform: rotate(0deg) translateY(-4px);
+    }
+
+    .memory-2 {
+      grid-column: span 7;
+      transform: rotate(1.2deg);
+    }
+    .memory-2:hover {
+      transform: rotate(0deg) translateY(-4px);
+    }
+
+    .memory-3 {
+      grid-column: span 12;
+      max-width: 780px;
+      margin: 8px auto 0;
+      width: 100%;
+      transform: rotate(-0.6deg);
+    }
+    .memory-3:hover {
+      transform: rotate(0deg) translateY(-4px);
+    }
+
+    @media (max-width: 820px) {
+      .memory-1, .memory-2, .memory-3 {
+        grid-column: span 12;
+        transform: none;
+      }
+    }
+
+    .media-frame {
+      position: relative;
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #1b1315;
+    }
+
+    .media-frame img,
+    .media-frame video {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .memory-1 .media-frame video {
+      max-height: 490px;
+      object-fit: cover;
+    }
+
+    .memory-2 .media-frame img {
+      max-height: 490px;
+      object-fit: cover;
+    }
+
+    .memory-3 .media-frame video {
+      max-height: 460px;
+      object-fit: contain;
+      background: #181213;
+    }
+
+    .polaroid-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 14px;
+      padding: 0 4px;
+    }
+
+    .memory-date {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--rose-main);
+      background: var(--rose-blush);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .polaroid-caption {
+      font-family: 'Caveat', cursive;
+      font-size: 1.62rem;
+      color: var(--text-dark);
+      margin-top: 10px;
+      line-height: 1.3;
+      padding: 0 4px;
+    }
+
+    .polaroid-story {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+      padding: 0 4px;
+    }
+
+    /* Pequeñas notas interactivas */
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+      gap: 20px;
+      margin-bottom: 64px;
+    }
+
+    .note-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 24px 20px;
+      border: 1px solid rgba(200, 90, 106, 0.16);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .note-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--rose-main);
+    }
+
+    .note-icon {
+      font-size: 1.65rem;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .note-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--rose-deep);
+      margin-bottom: 6px;
+    }
+
+    .note-text {
+      font-size: 0.93rem;
+      color: var(--text-muted);
+    }
+
+    /* Cierre interactivo */
+    .footer-card {
+      text-align: center;
+      background: linear-gradient(145deg, #fff9f7 0%, #fae8ea 100%);
+      border-radius: 24px;
+      padding: 42px 24px;
+      border: 1px solid rgba(200, 90, 106, 0.22);
+      box-shadow: var(--shadow-soft);
+      max-width: 660px;
+      margin: 0 auto;
+    }
+
+    .footer-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.1rem;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+
+    .footer-card p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      max-width: 480px;
+      margin: 0 auto 24px;
+    }
+
+    .hug-btn {
+      background: var(--rose-deep);
+      color: #fff;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 0.98rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(158, 61, 76, 0.28);
+      transition: transform 0.2s ease, background 0.25s ease;
+    }
+
+    .hug-btn:hover {
+      background: #842f3c;
+      transform: scale(1.04);
+    }
+
+    .hug-btn:active {
+      transform: scale(0.98);
+    }
+
+    .secret-message {
+      margin-top: 20px;
+      font-family: 'Caveat', cursive;
+      font-size: 1.7rem;
+      color: var(--rose-deep);
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.5s ease, max-height 0.5s ease;
+    }
+
+    .secret-message.visible {
+      opacity: 1;
+      max-height: 160px;
+    }
+
+    .burst-heart {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      font-size: 1.5rem;
+      animation: burstAnim 1.4s ease-out forwards;
+    }
+
+    @keyframes burstAnim {
+      0% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--tx), var(--ty)) scale(1.35) rotate(var(--rot));
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sobre de bienvenida -->
+  <div class="envelope-overlay" id="envelopeOverlay">
+    <div class="envelope-card" id="openCard">
+      <div class="wax-seal">🤍</div>
+      <div class="envelope-tag">Para mi persona favorita</div>
+      <h2 class="envelope-title">Hola, mi amor</h2>
+      <p class="envelope-sub">
+        Hice este pequeño rincón para guardar un pedacito de lo que somos y celebrar nuestros <strong>3 años y 2 meses</strong> juntos.
+      </p>
+      <button class="open-btn" id="openBtn" type="button">
+        <span>Abrir nuestro recuerdo</span>
+        <span>✨</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Partículas suaves de fondo -->
+  <div class="floating-hearts" id="floatingHearts"></div>
+
+  <!-- Contenido principal -->
+  <main class="page-wrapper">
+    <header class="hero">
+      <span class="badge-date">3 AÑOS Y 2 MESES JUNTOS · 38 MESES DE NOSOTROS</span>
+      <h1>Contigo todo es más bonito, <span>mi amor</span></h1>
+      <p class="hero-subtitle">
+        «¿Por qué quieres salir si es mi video?» — «Porque es nuestra vida» 💛
+      </p>
+    </header>
+
+    <!-- Resumen de tiempo juntos -->
+    <section class="stats-strip" aria-label="Tiempo juntos">
+      <div class="stat-card">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Años caminando de la mano</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">+ 2</div>
+        <div class="stat-label">Meses sumando aventuras</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">38</div>
+        <div class="stat-label">Meses de risas y complicidad</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">15</div>
+        <div class="stat-label">Vueltas en el pasto hasta marearnos</div>
+      </div>
+    </section>
+
+    <!-- Carta sincera -->
+    <section class="letter-section" aria-label="Carta para ti">
+      <div class="letter-greeting">Mi amor,</div>
+      <div class="letter-body">
+        <p>
+          Hoy cumplimos <strong>3 años y 2 meses</strong>, y viendo nuestras fotos y videos me puse a pensar en lo rápido que se pasa el tiempo cuando estás con la persona correcta. No hace falta buscar palabras complicadas para decirte lo mucho que te amo, porque lo nuestro siempre ha estado en las cosas más simples y reales.
+        </p>
+        <p>
+          Está en esas tardes con el uniforme del club y la pañoleta amarilla, cuando intentas grabarte un video tú sola y yo me meto a darte un beso en el cachete solo para recordarte que <span class="letter-highlight">no es tu video ni el mío, sino nuestra vida</span>.
+        </p>
+        <p>
+          Está en nuestras ocurrencias de dejar el celular apoyado en el pasto —rezando para que nadie se lo lleve— solo para grabarnos dando quince vueltas agarrados de las manos y terminar todos mareados, cayéndonos de risa y abrazándonos fuerte. Y también en esos paseos bajo el sol donde hasta nuestras sombras terminan haciendo un corazón en la pista.
+        </p>
+        <p>
+          Gracias por estos 38 meses de paciencia, de ternura, de ser mi equipo y mi lugar seguro. Me encanta la vida que estamos construyendo juntos y me ilusiona todo lo que todavía nos falta vivir.
+        </p>
+      </div>
+      <div class="letter-signature">
+        Te amo muchísimo, hoy y siempre 🤍
+      </div>
+    </section>
+
+    <!-- Galería de fotos y videos -->
+    <section aria-label="Nuestros recuerdos">
+      <div class="section-header">
+        <h2>Pedacitos de nuestra historia</h2>
+        <p>Momentos que me hacen sonreír cada vez que los vuelvo a ver</p>
+      </div>
+
+      <div class="memories-grid">
+        <!-- Video 1: Snapchat -->
+        <article class="polaroid-card memory-1">
+          <div class="tape"></div>
+          <div class="media-frame">
+            <video
+              controls
+              playsinline
+              preload="metadata"
+              src="Snapchat-805527848.mp4"
+            >
+              Tu navegador no soporta la reproducción de video.
+            </video>
+          </div>
+          <div class="polaroid-meta">
+            <span class="memory-date">Nuestro clásico 💛</span>
+            <span>🎬 Video</span>
+          </div>
+          <div class="polaroid-caption">
+            «No es tu video... ¡es nuestra vida!»
+          </div>
+          <p class="polaroid-story">
+            Tú queriendo hacer tu video tranquila y yo apareciendo para robarte un beso. Esa sonrisa tuya al final es de mis cosas favoritas en el mundo.
+          </p>
+        </article>
+
+        <!-- Foto 2: Sombras haciendo un corazón -->
+        <article class="polaroid-card memory-2">
+          <div class="tape"></div>
+          <div class="media-frame">
+            <img
+              src="IMG_20240525_142706.jpg"
+              alt="Nuestras sombras formando un corazón con los brazos bajo el sol"
+              loading="lazy"
+            />
+          </div>
+          <div class="polaroid-meta">
+            <span class="memory-date">25 de mayo · Bajo el sol</span>
+            <span>📸 Foto</span>
+          </div>
+          <div class="polaroid-caption">
+            Hasta nuestras sombras saben hacer equipo
+          </div>
+          <p class="polaroid-story">
+            Caminando juntos a pleno sol y parando un ratito en medio de la pista para armar nuestro corazón. Contigo cualquier paseo sencillo se vuelve especial.
+          </p>
+        </article>
+
+        <!-- Video 3: Las 15 vueltas en el parque -->
+        <article class="polaroid-card memory-3">
+          <div class="tape"></div>
+          <div class="media-frame">
+            <video
+              controls
+              playsinline
+              preload="metadata"
+              src="video-recuerdo.mp4"
+            >
+              Tu navegador no soporta la reproducción de video.
+            </video>
+          </div>
+          <div class="polaroid-meta">
+            <span class="memory-date">Reto de las 15 vueltas 🌴</span>
+            <span>🎬 Video completo</span>
+          </div>
+          <div class="polaroid-caption">
+            Quince vueltas, mucho mareo y el mejor abrazo al final
+          </div>
+          <p class="polaroid-story">
+            Dejamos el teléfono en el pasto («¡no vayan a robar el teléfono!»), contamos las 15 vueltas agarrados de las manos y terminamos tambaleándonos de la risa pero bien abrazados. Si me toca marearme en la vida, que sea siempre dando vueltas contigo.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Pequeños detalles -->
+    <section aria-label="Lo que más me gusta de nosotros">
+      <div class="section-header">
+        <h2>Lo que más amo de estos 3 años y 2 meses</h2>
+        <p>Cositas nuestras que no cambio por nada</p>
+      </div>
+
+      <div class="notes-grid">
+        <div class="note-card">
+          <span class="note-icon">😂</span>
+          <h3 class="note-title">Nuestras risas espontáneas</h3>
+          <p class="note-text">
+            Cómo podemos pasar de algo súper simple a reírnos sin parar hasta que nos duela la panza.
+          </p>
+        </div>
+
+        <div class="note-card">
+          <span class="note-icon">🧣</span>
+          <h3 class="note-title">Crecer y servir juntos</h3>
+          <p class="note-text">
+            Compartir el club, las actividades, los uniformes y acompañarnos en cada etapa importante.
+          </p>
+        </div>
+
+        <div class="note-card">
+          <span class="note-icon">🫂</span>
+          <h3 class="note-title">Tus abrazos de paz</h3>
+          <p class="note-text">
+            No importa qué tan pesado haya sido el día o qué tan mareados estemos: abrazarte siempre me devuelve la calma.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cierre interactivo -->
+    <footer class="footer-card">
+      <h3>Felices 3 años y 2 meses, mi vida</h3>
+      <p>
+        Vamos por muchos meses, años, viajes, risas y videos más juntos.
+      </p>
+      <button class="hug-btn" id="hugBtn" type="button">
+        Mandarte un abrazo de los nuestros 🤍
+      </button>
+      <div class="secret-message" id="secretMessage">
+        ¡Vale por un abrazo larguísimo y muchos besos apenas nos veamos! Te amo con todo mi corazón ❤️
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Abrir el sobre inicial
+    const envelopeOverlay = document.getElementById('envelopeOverlay');
+    const openCard = document.getElementById('openCard');
+    const openBtn = document.getElementById('openBtn');
+
+    function openEnvelope() {
+      envelopeOverlay.classList.add('opened');
+      spawnBurst(window.innerWidth / 2, window.innerHeight / 2, 18);
+    }
+
+    openCard.addEventListener('click', openEnvelope);
+    openBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openEnvelope();
+    });
+
+    // Pausar otros videos cuando uno se reproduce
+    const videos = document.querySelectorAll('video');
+    videos.forEach((vid) => {
+      vid.addEventListener('play', () => {
+        videos.forEach((other) => {
+          if (other !== vid && !other.paused) {
+            other.pause();
+          }
+        });
+      });
+    });
+
+    // Botón final de abrazo y lluvia de corazones
+    const hugBtn = document.getElementById('hugBtn');
+    const secretMessage = document.getElementById('secretMessage');
+
+    hugBtn.addEventListener('click', (e) => {
+      secretMessage.classList.add('visible');
+      const rect = hugBtn.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      spawnBurst(centerX, centerY, 26);
+    });
+
+    function spawnBurst(x, y, count) {
+      const symbols = ['🤍', '❤️', '💛', '✨', '🌷'];
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement('span');
+        el.className = 'burst-heart';
+        el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        el.style.left = x + 'px';
+        el.style.top = y + 'px';
+        const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.5;
+        const dist = 70 + Math.random() * 140;
+        el.style.setProperty('--tx', Math.cos(angle) * dist + 'px');
+        el.style.setProperty('--ty', Math.sin(angle) * dist - 40 + 'px');
+        el.style.setProperty('--rot', (Math.random() * 60 - 30) + 'deg');
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 1450);
+      }
+    }
+
+    // Corazones sutiles flotando en el fondo
+    const floatingContainer = document.getElementById('floatingHearts');
+    const bgSymbols = ['🤍', '✦', '♡'];
+
+    function createFloatingParticle() {
+      const span = document.createElement('span');
+      span.className = 'heart-particle';
+      span.textContent = bgSymbols[Math.floor(Math.random() * bgSymbols.length)];
+      span.style.left = Math.random() * 100 + 'vw';
+      span.style.fontSize = (12 + Math.random() * 14) + 'px';
+      const duration = 12 + Math.random() * 10;
+      span.style.animationDuration = duration + 's';
+      floatingContainer.appendChild(span);
+      setTimeout(() => span.remove(), duration * 1000);
+    }
+
+    setInterval(createFloatingParticle, 1800);
+    for (let i = 0; i < 6; i++) {
+      setTimeout(createFloatingParticle, i * 350);
+    }
+  </script>
+</body>
+</html>
